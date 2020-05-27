@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js_script</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="head"></h1>
+    <input id= "inputAmount" type="text"></input>
+    <button id="btn">+</button>
+    <script>
+        const headingEl=document.querySelector("#head");
+        let totalExpense = 0;
+        headingEl.textContent=totalExpense;
+        function addExpenseTotal() {
+            const inputElement = document.querySelector("#inputAmount");
+            const textAmount = inputElement.value;
+            const expense= parseInt(textAmount,10);
+            totalExpense = totalExpense + expense;
+            headingEl.textContent=totalExpense;
+        }
+        const element = document.querySelector("#btn");
+        element.addEventListener("click", addExpenseTotal, false);
+    </script>
+</body>
+</html>
