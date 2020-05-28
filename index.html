@@ -16,18 +16,35 @@
 </head>
 <body>
     <h1 id="head"></h1>
-    <input id= "inputAmount" type="text"></input>
+    <input id= "inputAmount" type="text">
+    <input id="inputDesc" type="text">
     <button id="btn">+</button>
+    <div id="expenseTable"></div>
     <script>
         const headingEl=document.querySelector("#head");
+        const inputDescEl=document.querySelector("#inputDesc");
+        const inputElement = document.querySelector("#inputAmount");
+        const expenseTableEl = document.querySelector("#expenseTable"); 
         let totalExpense = 0;
         headingEl.textContent=totalExpense;
+        const allExpense = [];
         function addExpenseTotal() {
-            const inputElement = document.querySelector("#inputAmount");
+            const exp={};
             const textAmount = inputElement.value;
+            const textDesc = inputDescEl.value;
             const expense= parseInt(textAmount,10);
+            exp.Desc=textDesc;
+            exp.Amount=textAmount;
+            allExpense.push(exp);
             totalExpense = totalExpense + expense;
-            headingEl.textContent=totalExpense;
+            const sometext = `Total : ${totalExpense}`
+            headingEl.textContent=sometext;
+            // looping using map because it is much efficient
+            const allExpenseHTML=allExpense.map((expense) => {
+                return `<div> ${expense.Amount} :: ${expense.Desc} </div>`
+            });
+            const joinedAllExpenseHTML = allExpenseHTML.join("");
+            expenseTableEl.innerHTML = joinedAllExpenseHTML;
         }
         const element = document.querySelector("#btn");
         element.addEventListener("click", addExpenseTotal, false);
